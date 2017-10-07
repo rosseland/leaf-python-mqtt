@@ -59,7 +59,7 @@ client = mqtt.Client()
 # Callback when MQTT is connected
 client.on_connect = on_connect
 # Callback when MQTT message is received
-client.on_message = on_message
+#client.on_message = on_message
 # Connect to MQTT
 client.username_pw_set(mqtt_username, mqtt_password);
 client.connect(mqtt_host, mqtt_port, 60)
