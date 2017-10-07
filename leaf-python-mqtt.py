@@ -50,13 +50,10 @@ def on_connect(client, userdata, flags, rc):
   client.subscribe(mqtt_control_topic + "/#")
   logging.info("Publishing to leaf status topic: " + mqtt_status_topic)
   client.publish(mqtt_status_topic, "MQTT connected");
-  
-# The callback for when a PUBLISH message is received from the server.
-def on_message(client, userdata, msg):
-   logging.info('Update control command received: ')
-   leaf_info = get_leaf_update()
-   time.sleep(10)
-   mqtt_publish(leaf_info)
+  logging.info('Update control command received: ')
+  leaf_info = get_leaf_update()
+  time.sleep(10)
+  mqtt_publish(leaf_info)
 
 client = mqtt.Client()
 # Callback when MQTT is connected
