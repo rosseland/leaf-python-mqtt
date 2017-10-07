@@ -198,7 +198,7 @@ get_leaf_status()
 
 # Then schedule
 logging.info("Schedule API update every " + GET_UPDATE_INTERVAL + "min")
-schedule.every(int(GET_UPDATE_INTERVAL)).minutes.do(get_leaf_status)
+schedule.every(int(GET_UPDATE_INTERVAL)).minutes.do(get_leaf_status + get_leaf_update)
 
 while True:
     schedule.run_pending()
