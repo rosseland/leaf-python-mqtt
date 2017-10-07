@@ -50,26 +50,26 @@ def on_connect(client, userdata, flags, rc):
   client.subscribe(mqtt_control_topic + "/#")
   logging.info("Publishing to leaf status topic: " + mqtt_status_topic)
   client.publish(mqtt_status_topic, "MQTT connected");
-
+  
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
 
     logging.info(msg.topic+" "+str(msg.payload))
 
     # control_subtopic = msg.topic.rsplit('/',1)[1]
-    control_message = msg.payload
-    logging.info("control sub-topic: " + control_subtopic)
-    logging.info("control message: " + control_message)
+#    control_message = msg.payload
+#    logging.info("control sub-topic: " + control_subtopic)
+#    logging.info("control message: " + control_message)
 
     # If climate control messaage is received mqtt_control_topic/climate
-    if control_subtopic == 'climate':
-      logging.info('Climate control command received: ' + control_message)
+#    if control_subtopic == 'climate':
+#      logging.info('Climate control command received: ' + control_message)
 
-      if control_message == '1':
-        climate_control(1)
+#      if control_message == '1':
+#        climate_control(1)
 
-      if control_message == '0':
-        climate_control(0)
+ #     if control_message == '0':
+ #       climate_control(0)
 
     # If climate control messaage is received on mqtt_control_topic/update
 #    if control_subtopic == 'update':
