@@ -74,9 +74,9 @@ def on_message(client, userdata, msg):
     # If climate control messaage is received on mqtt_control_topic/update
     if control_subtopic == 'update':
       logging.info('Update control command received: ')
-        leaf_info = get_leaf_update()
-        time.sleep(10)
-        mqtt_publish(leaf_info)
+      leaf_info = get_leaf_update()
+      time.sleep(10)
+      mqtt_publish(leaf_info)
 
 client = mqtt.Client()
 # Callback when MQTT is connected
