@@ -25,19 +25,19 @@ if os.path.exists(config_file_path):
   logging.info("Loaded config file " + config_file_path)
   #candidates = [ 'config.ini', 'my_config.ini' ]
   candidates = config_file_path
-  found = parser.read(candidates)
-  username = parser.get('get-leaf-info', 'username')
-  password = parser.get('get-leaf-info', 'password')
-  mqtt_host = parser.get('get-leaf-info', 'mqtt_host')
-  mqtt_port = parser.get('get-leaf-info', 'mqtt_port')
-  mqtt_username = parser.get('get-leaf-info', 'mqtt_username')
-  mqtt_password = parser.get('get-leaf-info', 'mqtt_password')
-  mqtt_control_topic = parser.get('get-leaf-info', 'mqtt_control_topic')
-  mqtt_status_topic =  parser.get('get-leaf-info', 'mqtt_status_topic')
-  nissan_region_code = parser.get('get-leaf-info', 'nissan_region_code')
-  control_subtopic = parser.get('get-leaf-info', 'get_car_updates')
-  GET_UPDATE_INTERVAL = parser.get('get-leaf-info', 'api_update_interval_min')
-  logging.info("updating data from API every " + GET_UPDATE_INTERVAL +"min")
+found = parser.read(candidates)
+username = parser.get('get-leaf-info', 'username')
+password = parser.get('get-leaf-info', 'password')
+mqtt_host = parser.get('get-leaf-info', 'mqtt_host')
+mqtt_port = parser.get('get-leaf-info', 'mqtt_port')
+mqtt_username = parser.get('get-leaf-info', 'mqtt_username')
+mqtt_password = parser.get('get-leaf-info', 'mqtt_password')
+mqtt_control_topic = parser.get('get-leaf-info', 'mqtt_control_topic')
+mqtt_status_topic =  parser.get('get-leaf-info', 'mqtt_status_topic')
+nissan_region_code = parser.get('get-leaf-info', 'nissan_region_code')
+control_subtopic = parser.get('get-leaf-info', 'get_car_updates')
+GET_UPDATE_INTERVAL = parser.get('get-leaf-info', 'api_update_interval_min')
+logging.info("updating data from API every " + GET_UPDATE_INTERVAL +"min")
 else:
   logging.error("ERROR: Config file not found " + config_file_path)
   quit()
@@ -71,7 +71,7 @@ client.loop_start()
 
 
 def climate_control(climate_control_instruction):
-  logging.debug("login = %s , password = %s" % ( username , password)  )
+  logging.debug("login = %s , password = %s" % ( username , password))
   logging.info("Prepare Session climate control update")
   s = pycarwings2.Session(username, password , "NE")
   logging.info("Login...")
@@ -198,7 +198,7 @@ get_leaf_status()
 
 # Then schedule
 logging.info("Schedule API update every " + GET_UPDATE_INTERVAL + "min")
-schedule.every(int(GET_UPDATE_INTERVAL)).minutes.do(get_leaf_status + get_leaf_update)
+schedule.every(int(GET_UPDATE_INTERVAL)).minutes.do(get_leaf_status,get_leaf_update)
 
 while True:
     schedule.run_pending()
