@@ -35,6 +35,7 @@ if os.path.exists(config_file_path):
   mqtt_control_topic = parser.get('get-leaf-info', 'mqtt_control_topic')
   mqtt_status_topic =  parser.get('get-leaf-info', 'mqtt_status_topic')
   nissan_region_code = parser.get('get-leaf-info', 'nissan_region_code')
+  control_subtopic = parser.get('get-leaf-info', 'get_car_updates')
   GET_UPDATE_INTERVAL = parser.get('get-leaf-info', 'api_update_interval_min')
   logging.info("updating data from API every " + GET_UPDATE_INTERVAL +"min")
 else:
@@ -55,7 +56,7 @@ def on_message(client, userdata, msg):
 
     logging.info(msg.topic+" "+str(msg.payload))
 
-    control_subtopic = msg.topic.rsplit('/',1)[1]
+    # control_subtopic = msg.topic.rsplit('/',1)[1]
     control_message = msg.payload
     logging.info("control sub-topic: " + control_subtopic)
     logging.info("control message: " + control_message)
